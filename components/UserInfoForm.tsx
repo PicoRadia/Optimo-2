@@ -22,13 +22,28 @@ const UserInfoForm = ({
     >
       <div className="w-full flex flex-col gap-5">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="name">Name</Label>
+          <Label htmlFor="name">First Name</Label>
           <Input
             autoFocus
             type="text"
             name="name"
             id="name"
-            placeholder="e.g. Stephen King"
+            placeholder="e.g. Stephen"
+            value={name}
+            onChange={(e) => updateForm({ name: e.target.value })}
+            className="w-full"
+            required
+          />
+          {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+        </div>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="name">Last Name</Label>
+          <Input
+            autoFocus
+            type="text"
+            name="name"
+            id="name"
+            placeholder="e.g. King"
             value={name}
             onChange={(e) => updateForm({ name: e.target.value })}
             className="w-full"
