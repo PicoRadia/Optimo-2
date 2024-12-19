@@ -38,7 +38,10 @@ const PlanForm = ({ updateForm, plan, yearly }: stepProps) => {
       title="Customer Info"
       description="You have the option of monthly or yearly billing."
     >
-      
+      <div className="w-full flex flex-col gap-5">
+        {/* Your form content here */}
+        <div>Form content will go here</div>
+      </div>
     </FormWrapper>
   );
 };
