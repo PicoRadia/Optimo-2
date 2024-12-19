@@ -20,18 +20,32 @@ interface AddOn {
 }
 
 export type FormItems = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  phone: string;
+  authentication: string;
   plan: "arcade" | "advanced" | "pro";
   yearly: boolean;
-  addOns: AddOn[];
+  addOns: Array<{
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    checked: boolean;
+  }>;
+  errors: {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    authentication?: string;
+  };
 };
 
 const initialValues: FormItems = {
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
-  phone: "",
+  authentication: "",
   plan: "arcade",
   yearly: false,
   addOns: [
@@ -57,6 +71,7 @@ const initialValues: FormItems = {
       price: 2,
     },
   ],
+  errors: {},
 };
 
 export default function Home() {
@@ -74,22 +89,39 @@ export default function Home() {
   } = useMultiplestepForm(4);
 
   function updateForm(fieldToUpdate: Partial<FormItems>) {
-    const { name, email, phone } = fieldToUpdate;
+    const { firstName, lastName, email, authentication } = fieldToUpdate;
 
-    if (name && name.trim().length < 3) {
+    if (firstName && firstName.trim().length < 3) {
       setErrors((prevState) => ({
         ...prevState,
-        name: "Name should be at least 3 characters long",
+        firstName: "First name should be at least 3 characters long",
       }));
-    } else if (name && name.trim().length > 15) {
+    } else if (firstName && firstName.trim().length > 15) {
       setErrors((prevState) => ({
         ...prevState,
-        name: "Name should be no longer than 15 characters",
+        firstName: "First name should be no longer than 15 characters",
       }));
     } else {
       setErrors((prevState) => ({
         ...prevState,
-        name: "",
+        firstName: "",
+      }));
+    }
+
+    if (lastName && lastName.trim().length < 3) {
+      setErrors((prevState) => ({
+        ...prevState,
+        lastName: "Last name should be at least 3 characters long",
+      }));
+    } else if (lastName && lastName.trim().length > 15) {
+      setErrors((prevState) => ({
+        ...prevState,
+        lastName: "Last name should be no longer than 15 characters",
+      }));
+    } else {
+      setErrors((prevState) => ({
+        ...prevState,
+        lastName: "",
       }));
     }
 
@@ -105,15 +137,15 @@ export default function Home() {
       }));
     }
 
-    if (phone && !/^[0-9]{10}$/.test(phone)) {
+    if (authentication && !/\S+@\S+\.\S+/.test(authentication)) {
       setErrors((prevState) => ({
         ...prevState,
-        phone: "Please enter a valid 10-digit phone number",
+        authentication: "Please enter a valid authentication",
       }));
     } else {
       setErrors((prevState) => ({
         ...prevState,
-        phone: "",
+        authentication: "",
       }));
     }
 

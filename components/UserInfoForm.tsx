@@ -30,7 +30,7 @@ const UserInfoForm = ({
   return (
     <FormWrapper
       title="Personal info"
-      description="Please provide your name, email address, and password."
+      description="Please provide your name, email address, and Authentication code."
     >
       <div className="w-full flex flex-col gap-5">
         <div className="flex flex-col gap-2">
