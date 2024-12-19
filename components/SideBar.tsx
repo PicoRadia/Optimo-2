@@ -58,13 +58,13 @@ const SideBar = ({ currentStepIndex, goTo }: NavProps) => {
               tabIndex={0}
               onClick={() => goTo(2)}
               className={`text-sm ${
-                currentStepIndex === 2 ? "text-[#E7B8FF]" : "text-white"
+                currentStepIndex === 2 ? "text-[#FF8360]" : "text-white"
               } md:text-base`}
             >
               <RoughNotation
                 type="underline"
                 show={currentStepIndex === 2}
-                color="#E7B8FF"
+                color="#FF8360"
               >
                 Address
               </RoughNotation>
