@@ -9,47 +9,58 @@ type StepProps = FormItems & {
 };
 
 const UserInfoForm = ({
-  name,
+  firstName,
+  lastName,
   email,
-  phone,
+  authentication,
   errors,
   updateForm,
 }: StepProps) => {
+  const handleAuthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    updateForm({ 
+      authentication: value,
+      errors: {
+        ...errors,
+        authentication: value !== "betterearth2025" ? "Incorrect password" : ""
+      }
+    });
+  };
+
   return (
     <FormWrapper
       title="Personal info"
-      description="Please provide your name, email address, and phone number."
+      description="Please provide your name, email address, and password."
     >
       <div className="w-full flex flex-col gap-5">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="name">First Name</Label>
+          <Label htmlFor="firstName">First Name</Label>
           <Input
             autoFocus
             type="text"
-            name="name"
-            id="name"
+            name="firstName"
+            id="firstName"
             placeholder="e.g. Stephen"
-            value={name}
-            onChange={(e) => updateForm({ name: e.target.value })}
+            value={firstName}
+            onChange={(e) => updateForm({ firstName: e.target.value })}
             className="w-full"
             required
           />
-          {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+          {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="name">Last Name</Label>
+          <Label htmlFor="lastName">Last Name</Label>
           <Input
-            autoFocus
             type="text"
-            name="name"
-            id="name"
+            name="lastName"
+            id="lastName"
             placeholder="e.g. King"
-            value={name}
-            onChange={(e) => updateForm({ name: e.target.value })}
+            value={lastName}
+            onChange={(e) => updateForm({ lastName: e.target.value })}
             className="w-full"
             required
           />
-          {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+          {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
         </div>
         <div className="flex flex-col gap-2">
           <Label htmlFor="email">Email Address</Label>
@@ -68,19 +79,19 @@ const UserInfoForm = ({
           )}
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="phone">Phone Number</Label>
+          <Label htmlFor="authentication">Authentication Code</Label>
           <Input
-            type="tel"
-            name="phone"
-            id="phone"
-            placeholder="e.g. +1 234 567 890"
-            value={phone}
+            type="password"
+            name="authentication"
+            id="authentication"
+            placeholder="Enter your authentication code"
+            value={authentication}
             className="w-full"
-            onChange={(e) => updateForm({ phone: e.target.value })}
+            onChange={handleAuthChange}
             required
           />
-          {errors.phone && (
-            <p className="text-red-500 text-sm">{errors.phone}</p>
+          {errors.authentication && (
+            <p className="text-red-500 text-sm">{errors.authentication}</p>
           )}
         </div>
       </div>

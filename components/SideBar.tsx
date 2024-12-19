@@ -26,7 +26,7 @@ const SideBar = ({ currentStepIndex, goTo }: NavProps) => {
                 show={currentStepIndex === 0}
                 color="#ffe666"
               >
-                Your info
+                Authentification
               </RoughNotation>
             </button>
           </li>
@@ -46,7 +46,7 @@ const SideBar = ({ currentStepIndex, goTo }: NavProps) => {
                 show={currentStepIndex === 1}
                 color="#bd284d"
               >
-                Select plan
+                Customer Information
               </RoughNotation>
             </button>
           </li>
@@ -66,7 +66,7 @@ const SideBar = ({ currentStepIndex, goTo }: NavProps) => {
                 show={currentStepIndex === 2}
                 color="#E7B8FF"
               >
-                Add-ons
+                Address
               </RoughNotation>
             </button>
           </li>
@@ -86,7 +86,27 @@ const SideBar = ({ currentStepIndex, goTo }: NavProps) => {
                 show={currentStepIndex === 3}
                 color="#6fe79f"
               >
-                Summary
+                Scheduling
+              </RoughNotation>
+            </button>
+          </li>
+          <li className="flex flex-col items-start font-medium">
+            <span className="hidden text-neutral-500 uppercase text-sm md:flex">
+              step 5
+            </span>
+            <button
+              tabIndex={0}
+              onClick={() => goTo(4)}
+              className={`text-sm ${
+                currentStepIndex === 4 ? "text-[#1F5EF3]" : "text-white"
+              } md:text-base`}
+            >
+              <RoughNotation
+                type="underline"
+                show={currentStepIndex === 4}
+                color="#1F5EF3"
+              >
+                Confirmation
               </RoughNotation>
             </button>
           </li>
