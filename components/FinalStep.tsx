@@ -36,8 +36,8 @@ const FinalStep = ({ yearly, plan, addOns, goTo }: StepProps) => {
 
   return (
     <FormWrapper
-      title="Finishing Up"
-      description="Double-check everything looks OK before confirming."
+      title="Scheduling"
+      description="Choose a time slot for your customer"
     >
    
     </FormWrapper>
