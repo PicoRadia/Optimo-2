@@ -1,46 +1,78 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import * as ToggleGroup from "@radix-ui/react-toggle-group";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import FormWrapper from "./FormWrapper";
 import { FormItems } from "@/app/page";
-import arcadeImg from "../public/assets/arcade.png";
-import advancedImg from "../public/assets/game-console.png";
-import proImg from "../public/assets/online-gaming.png";
 
 type stepProps = FormItems & {
   updateForm: (fieldToUpdate: Partial<FormItems>) => void;
 };
 
-type Plan = "arcade" | "advanced" | "pro";
-
-const PlanForm = ({ updateForm, plan, yearly }: stepProps) => {
-  const [yearlyUpdated, setYearlyUpdated] = useState(yearly);
-  const [planSelected, setPlanSelected] = useState<Plan>(plan);
-
-  const handleCheckedChange = (yearlyUpdated: boolean) => {
-    setYearlyUpdated((prev) => !prev);
-    updateForm({ yearly: yearlyUpdated });
-  };
-
-  const handleValueChange = (planSelected: Plan) => {
-    if (planSelected) {
-      setPlanSelected(planSelected);
-      updateForm({ plan: planSelected });
-    }
-  };
-
+const PlanForm = ({ updateForm, firstName, lastName, email, phone }: stepProps) => {
   return (
     <FormWrapper
-      title="Customer Info"
-      description="You have the option of monthly or yearly billing."
+      title="Personal Information"
+      description="Please provide your personal details."
     >
       <div className="w-full flex flex-col gap-5">
-        {/* Your form content here */}
-        <div>Form content will go here</div>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="firstName">First Name</Label>
+          <Input
+            autoFocus
+            type="text"
+            name="firstName"
+            id="firstName"
+            placeholder="e.g. John"
+            value={firstName}
+            onChange={(e) => updateForm({ firstName: e.target.value })}
+            className="w-full"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="lastName">Last Name</Label>
+          <Input
+            type="text"
+            name="lastName"
+            id="lastName"
+            placeholder="e.g. Doe"
+            value={lastName}
+            onChange={(e) => updateForm({ lastName: e.target.value })}
+            className="w-full"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="email">Email Address</Label>
+          <Input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="e.g. johndoe@example.com"
+            value={email}
+            onChange={(e) => updateForm({ email: e.target.value })}
+            className="w-full"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="phone">Phone Number</Label>
+          <Input
+            type="tel"
+            name="phone"
+            id="phone"
+            placeholder="e.g. +1 234 567 890"
+            value={phone}
+            onChange={(e) => updateForm({ phone: e.target.value })}
+            className="w-full"
+            required
+          />
+        </div>
       </div>
     </FormWrapper>
   );
