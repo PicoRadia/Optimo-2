@@ -24,7 +24,7 @@ export default function RootLayout({
     >
       <head />
       <body 
-        className="min-h-screen flex flex-col relative"
+        className="min-h-screen flex flex-col relative pt-12"
       >
         <div 
           className="fixed inset-0 z-[-1] transition-all duration-300"
@@ -48,6 +48,15 @@ export default function RootLayout({
                   width={160}
                   height={40}
                   priority
+                  className="hidden dark:block"
+                />
+                <Image
+                  src="/assets/logo-light.png"
+                  alt="Better Earth"
+                  width={180}
+                  height={40}
+                  priority
+                  className="block dark:hidden"
                 />
               </div>
               {children}
