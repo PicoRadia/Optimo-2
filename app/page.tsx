@@ -10,6 +10,7 @@ import AddonsForm from "@/components/AddonsForm";
 import FinalStep from "@/components/FinalStep";
 import SuccessMessage from "@/components/SuccessMessage";
 import SideBar from "@/components/SideBar";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface AddOn {
   id: number;
@@ -164,8 +165,12 @@ export default function Home() {
     <div
       className={`flex justify-between ${
         currentStepIndex === 1 ? "h-[600px] md:h-[500px]" : "h-[500px]"
-      } w-11/12 max-w-4xl relative m-1 rounded-lg border border-neutral-700 bg-[#262626] p-4`}
+      } w-11/12 max-w-4xl relative m-1 rounded-lg border border-gray-200 bg-white dark:bg-[#262626] dark:border-neutral-700 p-4 shadow-lg`}
     >
+      <div className="absolute top-4 right-4 z-10">
+        <ThemeToggle />
+      </div>
+
       {!showSuccessMsg ? (
         <SideBar currentStepIndex={currentStepIndex} goTo={goTo} />
       ) : (

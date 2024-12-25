@@ -1,45 +1,43 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import FormWrapper from "./FormWrapper";
-import { Separator } from "@/components/ui/separator";
+import { Calendar } from "@/components/ui/calendar";
 import { FormItems } from "@/app/page";
 
 type StepProps = FormItems & {
   goTo: (index: number) => void;
+  updateForm: (fieldToUpdate: Partial<FormItems>) => void;
 };
 
-const FinalStep = ({ yearly, plan, addOns, goTo }: StepProps) => {
-  let planPrice = 0;
-  switch (plan) {
-    case "arcade":
-      planPrice = 9;
-      break;
-    case "advanced":
-      planPrice = 12;
-      break;
-    case "pro":
-      planPrice = 15;
-      break;
-    default:
-      planPrice = 0;
-      break;
-  }
-
-  const filteredAddOns = addOns.filter((addOn) => addOn.checked === true);
-
-  const totalAddOnsPrice = filteredAddOns?.reduce(
-    (acc, obj) => acc + obj.price,
-    0
+const FinalStep = ({ scheduling = { date: "", time: "", timezone: "" }, updateForm }: StepProps) => {
+  const [date, setDate] = useState<Date | undefined>(
+    scheduling.date ? new Date(scheduling.date) : undefined
   );
-  console.log(totalAddOnsPrice);
+
+  const handleDateSelect = (newDate: Date | undefined) => {
+    setDate(newDate);
+    updateForm({
+      scheduling: {
+        ...scheduling,
+        date: newDate?.toISOString() || "",
+      },
+    });
+  };
 
   return (
     <FormWrapper
       title="Scheduling"
       description="Choose a time slot for your customer"
     >
-   
+      <div className="flex justify-center items-center h-[450px]">
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={handleDateSelect}
+          className="rounded-md border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-[#1a1a1a] p-4"
+        />
+      </div>
     </FormWrapper>
   );
 };

@@ -34,7 +34,7 @@ const UserInfoForm = ({
     >
       <div className="w-full flex flex-col gap-5">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="firstName">First Name</Label>
+          <Label htmlFor="firstName" className="text-gray-900 dark:text-gray-100">First Name</Label>
           <Input
             autoFocus
             type="text"
@@ -43,7 +43,7 @@ const UserInfoForm = ({
             placeholder="e.g. Stephen"
             value={firstName}
             onChange={(e) => updateForm({ firstName: e.target.value })}
-            className="w-full"
+            className="w-full bg-white dark:bg-neutral-800 text-gray-900 dark:text-gray-100"
             required
           />
           {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
