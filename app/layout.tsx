@@ -2,6 +2,7 @@ import { Ubuntu } from "@next/font/google";
 import Image from "next/image";
 import { Providers } from "./providers";
 import "../styles/globals.css";
+import { Ribbon } from "@/components/Ribbon";
 
 const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
@@ -45,10 +46,13 @@ export default function RootLayout({
               {children}
             </div>
           </main>
+          <div className="mt-auto">
+            <Ribbon />
+            <footer className="text-neutral-500 text-sm py-6 text-center">
+              © 2024 BetterEarth. All rights reserved.
+            </footer>
+          </div>
         </Providers>
-        <footer className="text-neutral-500 text-sm py-9 text-center">
-          © 2024 BetterEarth. All rights reserved.
-        </footer>
       </body>
     </html>
   );
