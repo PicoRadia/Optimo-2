@@ -24,13 +24,20 @@ export default function RootLayout({
     >
       <head />
       <body 
-        className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black"
-        style={{
-          backgroundImage: "url('/assets/pattern.png')",
-          backgroundRepeat: 'repeat',
-          backgroundSize: '100px'
-        }}
+        className="min-h-screen flex flex-col relative"
       >
+        <div 
+          className="fixed inset-0 z-[-1] transition-all duration-300"
+          style={{
+            backgroundImage: "url('/assets/bg.png')",
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="hidden dark:block absolute inset-0 bg-black/70" />
+        </div>
+        
         <Providers>
           <main className="flex-1 flex flex-col items-center justify-center px-4">
             <div className="w-full max-w-[1200px] flex flex-col items-center">
@@ -48,7 +55,7 @@ export default function RootLayout({
           </main>
           <div className="mt-auto">
             <Ribbon />
-            <footer className="text-neutral-500 text-sm py-6 text-center">
+            <footer className="text-gray-700 dark:text-neutral-500 text-sm py-6 text-center">
               © 2024 BetterEarth. All rights reserved.
             </footer>
           </div>
